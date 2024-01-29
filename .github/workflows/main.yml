@@ -8,6 +8,9 @@ on:
     
   workflow_dispatch:
 
+env:
+  DOTNET_VERSION: '6.0.x'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,12 +38,16 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+          global-json-file: api-test-suite/global.json
 
       - name: Install dependencies
         run: dotnet restore
+        working-directory: api-test-suite
       
       - name: Build
         run: dotnet build --configuration Release --no-restore
+        working-directory: api-test-suite
     
       - name: Test
         run: dotnet test --no-restore --verbosity normal
+        working-directory: api-test-suite

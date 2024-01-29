@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          path: main
       
       - name: Run a one-line script
         run: echo Hello, world!
@@ -21,26 +23,23 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-  notify:
-    name: test
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: ntiwari-z/api-test-suite
-        ref: main
       
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: Install dependencies
-      run: dotnet restore
+      - uses: actions/checkout@v4
+        with:
+          repository: ntiwari-z/api-test-suite
+          ref: main
+          path: api-test-suite
       
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
     
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal

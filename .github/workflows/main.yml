@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
       with:
         repository: ntiwari-z/api-test-suite
-      
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:

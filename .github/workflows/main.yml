@@ -34,8 +34,6 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: ntiwari-z/api-test-suite
-        ref: main
-        path: api-test-suite
         token: ${{ secrets.PAT }}
       
     - name: Setup .NET Core

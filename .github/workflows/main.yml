@@ -10,6 +10,7 @@ on:
 
 env:
   DOTNET_VERSION: '6.0.x'
+  TEST_ENVIRONMENT: Development
 
 jobs:
   build:
@@ -48,4 +49,4 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}

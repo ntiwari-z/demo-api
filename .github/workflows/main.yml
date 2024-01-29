@@ -29,7 +29,7 @@ jobs:
           repository: ntiwari-z/api-test-suite
           ref: main
           path: api-test-suite
-          token: ${{ github.token }}
+          token: ${{ secrets.PAT }}
       
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3

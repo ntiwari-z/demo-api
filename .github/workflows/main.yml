@@ -22,14 +22,14 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
   notify:
-    name: build-and-test-${{matrix.os}}
+    name: test
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@master
       with:
         repository: ntiwari-z/api-test-suite
-
+      
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:

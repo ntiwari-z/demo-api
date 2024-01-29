@@ -31,14 +31,12 @@ jobs:
     name: test
     needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
     steps:
     - uses: actions/checkout@v4
       with:
         repository: ntiwari-z/api-test-suite
         token: ${{ secrets.PAT }}
+        path: api-test-suite
       
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3

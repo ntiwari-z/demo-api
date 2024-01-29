@@ -31,6 +31,9 @@ jobs:
     name: test
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api-test-suite
     steps:
     - uses: actions/checkout@v4
       with:

@@ -49,7 +49,7 @@ jobs:
       - name: Run Tests
         run: |
           dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
-          cd /allure-results
+          cd /home/runner/work/demo-api/demo-api/api-test-suite
           ls
 
       - name: Get Allure history

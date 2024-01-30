@@ -62,6 +62,7 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
-          PERSONAL_TOKEN: ${{ secrets.PAT }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+          deploy_key: ${{ secrets.PAT }}
+          external_repository: ntiwari-z/api-test-suite
+          publish_branch: gh-pages
+          publish_dir: allure-history

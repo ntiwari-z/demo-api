@@ -43,9 +43,14 @@ jobs:
           mkdir -p allure-results
           cd allure-results
           mkdir -p history
+          cd ..
+
 
       - name: Run Tests
-        run: dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
+        run: |
+          dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
+          cd /allure-results
+          ls
 
       - name: Get Allure history
         uses: actions/checkout@v3

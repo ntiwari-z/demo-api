@@ -48,6 +48,7 @@ jobs:
           repository: ntiwari-z/api-test-suite
           token: ${{ secrets.PAT }}
           ref: gh-pages
+          path: gh-pages
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7

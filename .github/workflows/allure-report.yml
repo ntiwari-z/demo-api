@@ -24,7 +24,6 @@ jobs:
         with:
           repository: ntiwari-z/api-test-suite # Test suite repo name
           token: ${{ secrets.PAT }} # Github private access token
-          path: api-test-suite
   
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
@@ -48,14 +47,13 @@ jobs:
           repository: ntiwari-z/api-test-suite
           token: ${{ secrets.PAT }}
           ref: gh-pages
-          path: gh-pages
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7
         if: always()
         with:
-          allure_results: api-test-suite/Tests/bin/Debug/net6.0/allure-results
-          allure_history: api-test-suite/Tests/bin/Debug/net6.0/allure-results/history
+          allure_results: allure-results
+          allure_history: allure-results/history
           keep_reports: 20
 
       - name: Deploy report to Github Pages

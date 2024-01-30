@@ -60,7 +60,7 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           personal_token: ${{ secrets.PAT }}
           external_repository: ntiwari-z/api-test-suite

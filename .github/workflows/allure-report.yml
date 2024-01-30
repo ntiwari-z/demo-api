@@ -37,6 +37,9 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
     
+      - name: Prepare Allure history
+        run: mkdir -p allure-results  
+
       - name: Run Tests
         run: dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
 
@@ -54,7 +57,7 @@ jobs:
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
-          allure_results: api-test-suite/allure-results
+          allure_results: allure-results
           allure_history: allure-history
           keep_reports: 20
 

@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: ntiwari-z/api-test-suite # Test suite repo name
+          token: ${{ secrets.PAT }} # Github private access token
+          path: api-test-suite
   
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
@@ -38,6 +42,8 @@ jobs:
         if: always()
         continue-on-error: true
         with:
+          repository: ntiwari-z/api-test-suite
+          token: ${{ secrets.PAT }}
           ref: gh-pages
           path: gh-pages
 

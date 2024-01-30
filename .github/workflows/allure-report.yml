@@ -16,6 +16,9 @@ jobs:
   allure:
     name: Run tests and publish report
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api-test-suite
     steps:
       - uses: actions/checkout@v3
         with:

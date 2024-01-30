@@ -37,8 +37,18 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
     
-      - name: Prepare Allure history
-        run: mkdir -p allure-results  
+      - name: Prepare Allure history # Step to prepare Allure history directory
+        run: |
+          cd ..
+          mkdir -p allure-results
+          cd allure-results
+          mkdir -p history
+          ls
+          cd ..
+          ls
+          cd..
+          ls
+
 
       - name: Run Tests
         run: dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}

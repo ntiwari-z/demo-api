@@ -53,6 +53,6 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
           publish_branch: gh-pages
           publish_dir: allure-history

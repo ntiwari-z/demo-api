@@ -44,8 +44,7 @@ jobs:
           cd allure-results
           mkdir -p history
           cd ..
-
-
+          
       - name: Run Tests
         run: |
           dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}

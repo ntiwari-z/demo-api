@@ -11,6 +11,8 @@ on:
 env:
   DOTNET_VERSION: '6.0.x'
   TEST_ENVIRONMENT: Development
+  HOTELAPI_BASEURL: https://svc-api.ath-dev.com/api/hotel
+  TESTSUITE_REPO: ntiwari-z/api-test-suite
 
 jobs:
   allure:
@@ -22,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: ntiwari-z/api-test-suite # Test suite repo name
+          repository: ${{ env.TESTSUITE_REPO }} # Test suite repo name
           token: ${{ secrets.PAT }} # Github private access token
           path: api-test-suite
   
@@ -38,16 +40,15 @@ jobs:
         run: dotnet build --configuration Release --no-restore
     
       - name: Run Tests
-        run: |
-          dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
+        run: dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }} -e AppSettings__HotelApiBaseUrl=${{ env.HOTELAPI_BASEURL }}
 
       - name: Get Allure history
         uses: actions/checkout@v3
         if: always()
         continue-on-error: true
         with:
-          repository: ntiwari-z/api-test-suite
-          token: ${{ secrets.PAT }}
+          repository: ${{ env.TESTSUITE_REPO }} # Test suite repo name
+          token: ${{ secrets.PAT }} # Github private access token
           ref: gh-pages
           path: gh-pages
 
@@ -63,7 +64,7 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PAT }}
-          external_repository: ntiwari-z/api-test-suite
+          personal_token: ${{ secrets.PAT }} # Github private access token
+          external_repository: ${{ env.TESTSUITE_REPO }} # Test suite repo name
           publish_branch: gh-pages
           publish_dir: allure-history

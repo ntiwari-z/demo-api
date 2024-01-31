@@ -37,19 +37,9 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
     
-      - name: Prepare Allure history # Step to prepare Allure history directory
-        run: |
-          cd ..
-          mkdir -p allure-results
-          cd allure-results
-          mkdir -p history
-          cd ..
-          
       - name: Run Tests
         run: |
           dotnet test --no-restore --verbosity normal -e TEST_ENVIRONMENT=${{ env.TEST_ENVIRONMENT }}
-          cd /home/runner/work/demo-api/demo-api/api-test-suite/Tests/bin/Debug/net6.0/allure-results
-          ls
 
       - name: Get Allure history
         uses: actions/checkout@v3
